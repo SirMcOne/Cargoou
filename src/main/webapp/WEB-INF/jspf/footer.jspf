@@ -1,0 +1,13 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      v0.01
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2023 <a href="#">.</a></strong>.
+  </footer>
