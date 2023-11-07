@@ -1,5 +1,5 @@
-com\utpcom\cargoou\JakartaRestConfiguration.class
 com\utpcom\cargoou\dao\DaoRuta.class
+com\utpcom\cargoou\JakartaRestConfiguration.class
 com\utpcom\cargoou\test\Test.class
-com\utpcom\cargoou\util\Conexion.class
 com\utpcom\cargoou\resources\JakartaEE9Resource.class
+com\utpcom\cargoou\util\Conexion.class

@@ -4,10 +4,18 @@
  */
 package com.utpcom.cargoou.dao;
 
+import com.utpcom.cargoou.dto.BusDto;
+import java.util.List;
+
 /**
  *
  * @author user
  */
 public interface DaoBus {
-    
+    List<BusDto> busSel();
+    BusDto busGet(Integer id);
+    String busIns(BusDto genero);
+    String busUpd(BusDto genero);
+    String busDel(Integer id);
+    String getMensaje();
 }

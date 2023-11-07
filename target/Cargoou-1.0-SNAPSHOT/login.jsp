@@ -30,7 +30,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Ingresa tus datos de acceso</p>
 
-      <form action="index.jsp" method="post">
+      <form action="inicio.jsp" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Código" required="required">
           <div class="input-group-append">
