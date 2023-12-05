@@ -6,6 +6,7 @@ package com.utpcom.cargoou.dao.impl;
 
 import com.utpcom.cargoou.dao.DaoBus;
 import com.utpcom.cargoou.dto.BusDto;
+import com.utpcom.cargoou.entidades.Bus;
 import com.utpcom.cargoou.util.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,8 +23,8 @@ public class DaoBusImpl implements DaoBus {
     private final Conexion conexion;
     private String mensaje;
 
-    public DaoBusImpl(Conexion conexion) {
-        this.conexion = conexion;
+    public DaoBusImpl() {
+        this.conexion = new Conexion();
     }
     @Override
     public List<BusDto> busSel() {
@@ -46,7 +47,7 @@ public class DaoBusImpl implements DaoBus {
                 bus.setPlaca(rs.getString(2));
                 bus.setColor(rs.getString(3));
                 bus.setEstBus(rs.getString(4));
-                bus.setNumAsi(rs.getString(5));
+                bus.setNumAsi(rs.getInt(5));
                 lista.add(bus);
             }
         } catch (SQLException e) {
@@ -76,7 +77,7 @@ public class DaoBusImpl implements DaoBus {
                 bus.setPlaca(rs.getString(2));
                 bus.setColor(rs.getString(3));
                 bus.setEstBus(rs.getString(4));
-                bus.setNumAsi(rs.getString(5));
+                bus.setNumAsi(rs.getInt(5));
             }
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -85,7 +86,7 @@ public class DaoBusImpl implements DaoBus {
     }
 
     @Override
-    public String busIns(BusDto bus) {
+    public String busIns(Bus bus) {
         mensaje = null;
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO bus(")
@@ -109,7 +110,7 @@ public class DaoBusImpl implements DaoBus {
     }
 
     @Override
-    public String busUpd(BusDto bus) {
+    public String busUpd(Bus bus) {
         mensaje = null;
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE bus SET ")

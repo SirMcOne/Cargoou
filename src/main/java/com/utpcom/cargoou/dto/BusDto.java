@@ -9,28 +9,20 @@ package com.utpcom.cargoou.dto;
  * @author user
  */
 public class BusDto {
-    private int id_bus;
+    private Integer id_bus;
     private String placa;
     private String color;
     private String estBus;
-    private String numAsi;
+    private Integer numAsi;
 
     public BusDto() {
     }
 
-    public BusDto(int id_bus, String placa, String color, String estBus, String numAsi) {
-        this.id_bus = id_bus;
-        this.placa = placa;
-        this.color = color;
-        this.estBus = estBus;
-        this.numAsi = numAsi;
-    }
-
-    public int getId_bus() {
+    public Integer getId_bus() {
         return id_bus;
     }
 
-    public void setId_bus(int id_bus) {
+    public void setId_bus(Integer id_bus) {
         this.id_bus = id_bus;
     }
 
@@ -58,11 +50,11 @@ public class BusDto {
         this.estBus = estBus;
     }
 
-    public String getNumAsi() {
+    public Integer getNumAsi() {
         return numAsi;
     }
 
-    public void setNumAsi(String numAsi) {
+    public void setNumAsi(Integer numAsi) {
         this.numAsi = numAsi;
     }
     

@@ -4,8 +4,12 @@
  */
 package com.utpcom.cargoou.test;
 
+import com.utpcom.cargoou.dao.DaoBus;
+import com.utpcom.cargoou.dao.impl.DaoBusImpl;
+import com.utpcom.cargoou.dto.BusDto;
 import com.utpcom.cargoou.util.Conexion;
 import java.sql.Connection;
+import java.util.List;
 
 /**
  *
@@ -18,12 +22,25 @@ public class Test {
      */
     public static void main(String[] args) {
         // Test de conexión
-        Conexion con = new Conexion();
-        try(Connection c = con.getConexion()) {
-            System.out.println("OK FINO");
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
+        DaoBus daoBus = new DaoBusImpl();
+        List<BusDto> list = daoBus.busSel();
+        if (list != null) {
+            try {
+                list.forEach((t) -> {
+                    System.out.println(t.getId_bus().toString() + " "
+                            + t.getPlaca()+ " "
+                            + t.getColor() + " "
+                            + t.getEstBus() + " "
+                            + t.getNumAsi().toString());
+                            //+ t.getFecha_ingreso().toString());
+                });
+            } catch (Exception e) {
+                System.out.println(daoBus.getMensaje());
+                System.out.println(e.getMessage());
+            }
+        } else {
+            System.out.println("Lista vacía");
         }
     }
-    
+
 }

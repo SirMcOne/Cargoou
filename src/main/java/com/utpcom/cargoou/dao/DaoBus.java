@@ -5,6 +5,7 @@
 package com.utpcom.cargoou.dao;
 
 import com.utpcom.cargoou.dto.BusDto;
+import com.utpcom.cargoou.entidades.Bus;
 import java.util.List;
 
 /**
@@ -14,8 +15,8 @@ import java.util.List;
 public interface DaoBus {
     List<BusDto> busSel();
     BusDto busGet(Integer id);
-    String busIns(BusDto genero);
-    String busUpd(BusDto genero);
+    String busIns(Bus bus);
+    String busUpd(Bus bus);
     String busDel(Integer id);
     String getMensaje();
 }
