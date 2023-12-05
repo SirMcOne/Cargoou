@@ -9,16 +9,16 @@ package com.utpcom.cargoou.entidades;
  * @author user
  */
 public class Bus {
-    private int id_bus;
+    private Integer id_bus;
     private String placa;
     private String color;
     private String estBus;
-    private int numAsi; //numero de asientos
+    private Integer numAsi; //numero de asientos
 
     public Bus() {
     }
 
-    public Bus(int id_bus, String placa, String color, String estBus, int numAsi) {
+    public Bus(Integer id_bus, String placa, String color, String estBus, Integer numAsi) {
         this.id_bus = id_bus;
         this.placa = placa;
         this.color = color;
@@ -26,11 +26,11 @@ public class Bus {
         this.numAsi = numAsi;
     }
 
-    public int getId_bus() {
+    public Integer getId_bus() {
         return id_bus;
     }
 
-    public void setId_bus(int id_bus) {
+    public void setId_bus(Integer id_bus) {
         this.id_bus = id_bus;
     }
 
@@ -58,11 +58,11 @@ public class Bus {
         this.estBus = estBus;
     }
 
-    public int getNumAsi() {
+    public Integer getNumAsi() {
         return numAsi;
     }
 
-    public void setNumAsi(int numAsi) {
+    public void setNumAsi(Integer numAsi) {
         this.numAsi = numAsi;
     }
     
