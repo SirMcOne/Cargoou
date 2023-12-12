@@ -9,6 +9,7 @@ com\utpcom\cargoou\dao\impl\DaoHorario.class
 com\utpcom\cargoou\dao\impl\DaoBusImpl.class
 com\utpcom\cargoou\entidades\Pasajero.class
 com\utpcom\cargoou\entidades\Conductor.class
+com\utpcom\cargoou\web\validator\BusValidator.class
 com\utpcom\cargoou\dao\DaoConductor.class
 com\utpcom\cargoou\dao\impl\DaoRutaImpl.class
 com\utpcom\cargoou\entidades\Persona.class
@@ -29,6 +30,7 @@ com\utpcom\cargoou\entidades\Bus.class
 com\utpcom\cargoou\beans\ViajeBean.class
 com\utpcom\cargoou\dto\BusDto.class
 com\utpcom\cargoou\util\Conexion.class
+com\utpcom\cargoou\web\servlet\BusServlet.class
 com\utpcom\cargoou\dao\impl\DaoViajeImpl.class
 com\utpcom\cargoou\dao\impl\DaoPasajeroImpl.class
 com\utpcom\cargoou\entidades\Horario.class

@@ -3,11 +3,13 @@ C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoo
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\dao\DaoConductor.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\dao\DaoPasajero.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\dto\ConductorDto.java
+C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\web\validator\BusValidator.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\dto\ViajeDto.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\JakartaRestConfiguration.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\dao\impl\DaoRutaImpl.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\entidades\Conductor.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\entidades\Pasajero.java
+C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\web\servlet\BusServlet.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\dto\RutaDto.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\dao\impl\DaoBusImpl.java
 C:\Users\user\Documents\NetBeansProjects\Cargoou\src\main\java\com\utpcom\cargoou\resources\JakartaEE9Resource.java

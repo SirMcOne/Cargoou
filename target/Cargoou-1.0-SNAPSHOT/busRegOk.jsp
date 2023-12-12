@@ -68,7 +68,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="bus.jsp" class="nav-link active">
+                <a href="bus" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Bus</p>
                 </a>

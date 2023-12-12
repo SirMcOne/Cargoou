@@ -15,8 +15,8 @@ import java.sql.SQLException;
 public class Conexion {
     private final String URL="jdbc:mysql://localhost:3306/utpcom_cargoou";
     private final String DRIVER="com.mysql.cj.jdbc.Driver";
-    private final String USER="root";
-    private final String PASS="";
+    private final String USER="utpcom_cargoou";
+    private final String PASS="Beto123.";
     
     public Connection getConexion() throws SQLException{
         Connection c =null;
