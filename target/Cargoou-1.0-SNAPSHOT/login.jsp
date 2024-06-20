@@ -30,9 +30,10 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Ingresa tus datos de acceso</p>
 
-      <form action="inicio.jsp" method="post">
+      <form action="usuario" method="post" autocomplete="off">
+          <input type="hidden" name="accion" value="LOG"/>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Código" required="required">
+            <input type="text" class="form-control" name="codUsuari" placeholder="Código" required="required" autofocus="autofocus">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -40,7 +41,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Clave" required="required">
+            <input type="password" class="form-control" name="claUsuari" placeholder="Clave" required="required">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

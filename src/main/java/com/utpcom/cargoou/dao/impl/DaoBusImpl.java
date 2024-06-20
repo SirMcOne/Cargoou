@@ -6,7 +6,6 @@ package com.utpcom.cargoou.dao.impl;
 
 import com.utpcom.cargoou.dao.DaoBus;
 import com.utpcom.cargoou.dto.BusDto;
-import com.utpcom.cargoou.entidades.Bus;
 import com.utpcom.cargoou.util.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,23 +19,26 @@ import java.util.List;
  * @author user
  */
 public class DaoBusImpl implements DaoBus {
+
     private final Conexion conexion;
     private String mensaje;
 
     public DaoBusImpl() {
         this.conexion = new Conexion();
     }
+
     @Override
     public List<BusDto> busSel() {
         List<BusDto> lista = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
-                .append("id_bus,")
-                .append("placa")
-                .append("color")
-                .append("estBus")
-                .append("sumAsi")
+                .append("id_bus, ")
+                .append("placa, ")
+                .append("color, ")
+                .append("estBus, ")
+                .append("numAsi ")
                 .append(" FROM bus");
+        System.out.print(sql);
         try (Connection cn = conexion.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ResultSet rs = ps.executeQuery();
@@ -86,7 +88,7 @@ public class DaoBusImpl implements DaoBus {
     }
 
     @Override
-    public String busIns(Bus bus) {
+    public String busIns(BusDto bus) {
         mensaje = null;
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO bus(")
@@ -110,7 +112,7 @@ public class DaoBusImpl implements DaoBus {
     }
 
     @Override
-    public String busUpd(Bus bus) {
+    public String busUpd(BusDto bus) {
         mensaje = null;
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE bus SET ")
@@ -131,25 +133,33 @@ public class DaoBusImpl implements DaoBus {
     }
 
     @Override
-    public String busDel(Integer id) {
+    public String busDel(List<Integer> ids) {
         mensaje = null;
 
-
-            StringBuilder sql = new StringBuilder();
-            sql.append("DELETE FROM bus")
-                    .append(" WHERE id_bus = ?");
-            try (Connection cn = conexion.getConexion()) {
-                PreparedStatement ps = cn.prepareStatement(sql.toString());
-                ps.setInt(1, id);
+        StringBuilder sql = new StringBuilder();
+        sql.append("DELETE FROM bus")
+                .append(" WHERE id_bus = ?");
+        try (Connection cn = conexion.getConexion()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            cn.setAutoCommit(false);
+            boolean ok = true;
+            for (int id = 0; id < ids.size(); id++) {
+                ps.setInt(1, ids.get(id));
                 int ctos = ps.executeUpdate();
-                mensaje = (ctos == 0)
-                        ? "Cero filas insertadas"
-                        : null;
-
-            } catch (SQLException e) {
-                mensaje = e.getMessage();
+                if (ctos == 0) {
+                    ok = false;
+                    mensaje = "ID: " + ids.get(id) + " no existe";
+                }
             }
-        
+            if (ok) {
+                cn.commit();
+            } else {
+                cn.rollback();
+            }
+            cn.setAutoCommit(true);
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
 
         return mensaje;
     }
@@ -158,6 +168,5 @@ public class DaoBusImpl implements DaoBus {
     public String getMensaje() {
         return mensaje;
     }
-
 
 }
