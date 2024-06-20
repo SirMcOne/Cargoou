@@ -6,7 +6,6 @@ package com.utpcom.cargoou.dao.impl;
 
 import com.utpcom.cargoou.dao.DaoBus;
 import com.utpcom.cargoou.dto.BusDto;
-import com.utpcom.cargoou.entidades.Bus;
 import com.utpcom.cargoou.util.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

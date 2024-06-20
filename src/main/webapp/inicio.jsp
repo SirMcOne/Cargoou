@@ -104,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="correo.jsp" class="nav-link">
               <i class="nav-icon fas fa-envelope"></i>
               <p>
                 Mensajes
