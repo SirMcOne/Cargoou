@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 10, 2023 at 11:00 PM
+-- Generation Time: Jun 20, 2024 at 01:06 AM
 -- Server version: 5.7.40
 -- PHP Version: 8.2.0
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `utpcom_cargoou`
 --
-CREATE DATABASE IF NOT EXISTS `utpcom_cargoou` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `utpcom_cargoou`;
 
 -- --------------------------------------------------------
 
@@ -36,8 +34,41 @@ CREATE TABLE IF NOT EXISTS `bus` (
   `color` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `estBus` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   `numAsi` int(11) DEFAULT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   PRIMARY KEY (`id_bus`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bus`
+--
+
+INSERT INTO `bus` (`id_bus`, `placa`, `color`, `estBus`, `numAsi`, `usuCre`, `usuMod`, `fecCre`, `fecMod`) VALUES
+(1, 'ABC123', 'ROJO', 'ACT', 40, 'root@localhost', 'root@localhost', '2023-12-12 16:29:27', '2023-12-12 16:29:27');
+
+--
+-- Triggers `bus`
+--
+DROP TRIGGER IF EXISTS `T01I_bus`;
+DELIMITER $$
+CREATE TRIGGER `T01I_bus` BEFORE INSERT ON `bus` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_bus`;
+DELIMITER $$
+CREATE TRIGGER `T02U_bus` BEFORE UPDATE ON `bus` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -52,7 +83,55 @@ CREATE TABLE IF NOT EXISTS `conductor` (
   `id_persona` int(11) DEFAULT NULL,
   `calConduc` int(2) DEFAULT NULL,
   `numLicConduc` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   PRIMARY KEY (`id_conductor`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Triggers `conductor`
+--
+DROP TRIGGER IF EXISTS `T01I_conductor`;
+DELIMITER $$
+CREATE TRIGGER `T01I_conductor` BEFORE INSERT ON `conductor` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_conductor`;
+DELIMITER $$
+CREATE TRIGGER `T02U_conductor` BEFORE UPDATE ON `conductor` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `correo`
+--
+
+DROP TABLE IF EXISTS `correo`;
+CREATE TABLE IF NOT EXISTS `correo` (
+  `id_correo` int(11) NOT NULL AUTO_INCREMENT,
+  `codCorreo` char(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titCorreo` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emiCorreo` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `desCorreo` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `asuCorreo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `menCorreo` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
+  `usuCre` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_correo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -69,9 +148,35 @@ CREATE TABLE IF NOT EXISTS `detviaje` (
   `asiento` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
   `estado` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   `precio` decimal(10,2) NOT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   `obsviaje` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_detviaje`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Triggers `detviaje`
+--
+DROP TRIGGER IF EXISTS `T01I_detviaje`;
+DELIMITER $$
+CREATE TRIGGER `T01I_detviaje` BEFORE INSERT ON `detviaje` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_detviaje`;
+DELIMITER $$
+CREATE TRIGGER `T02U_detviaje` BEFORE UPDATE ON `detviaje` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -83,9 +188,35 @@ DROP TABLE IF EXISTS `horario`;
 CREATE TABLE IF NOT EXISTS `horario` (
   `id_horario` int(11) NOT NULL,
   `horSalida` time DEFAULT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   `estHorari` char(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_horario`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Triggers `horario`
+--
+DROP TRIGGER IF EXISTS `T01I_horario`;
+DELIMITER $$
+CREATE TRIGGER `T01I_horario` BEFORE INSERT ON `horario` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_horario`;
+DELIMITER $$
+CREATE TRIGGER `T02U_horario` BEFORE UPDATE ON `horario` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -100,9 +231,35 @@ CREATE TABLE IF NOT EXISTS `pasajero` (
   `id_persona` int(11) DEFAULT NULL,
   `codTarjet` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `numViajes` int(11) DEFAULT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   PRIMARY KEY (`id_pasajero`),
   UNIQUE KEY `Card` (`id_persona`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Triggers `pasajero`
+--
+DROP TRIGGER IF EXISTS `T01I_pasajero`;
+DELIMITER $$
+CREATE TRIGGER `T01I_pasajero` BEFORE INSERT ON `pasajero` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_pasajero`;
+DELIMITER $$
+CREATE TRIGGER `T02U_pasajero` BEFORE UPDATE ON `pasajero` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -114,12 +271,38 @@ DROP TABLE IF EXISTS `persona`;
 CREATE TABLE IF NOT EXISTS `persona` (
   `id_persona` int(11) NOT NULL AUTO_INCREMENT,
   `nomPerson` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   `apePerson` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `estPerson` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   `corPerson` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `edaPerson` int(2) NOT NULL,
   PRIMARY KEY (`id_persona`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Triggers `persona`
+--
+DROP TRIGGER IF EXISTS `T01I_persona`;
+DELIMITER $$
+CREATE TRIGGER `T01I_persona` BEFORE INSERT ON `persona` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_persona`;
+DELIMITER $$
+CREATE TRIGGER `T02U_persona` BEFORE UPDATE ON `persona` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -133,8 +316,34 @@ CREATE TABLE IF NOT EXISTS `ruta` (
   `lugInicia` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `lugFinal` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `numParade` int(11) DEFAULT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   PRIMARY KEY (`id_ruta`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Triggers `ruta`
+--
+DROP TRIGGER IF EXISTS `T01I_ruta`;
+DELIMITER $$
+CREATE TRIGGER `T01I_ruta` BEFORE INSERT ON `ruta` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_ruta`;
+DELIMITER $$
+CREATE TRIGGER `T02U_ruta` BEFORE UPDATE ON `ruta` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -147,11 +356,44 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `codRol` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_persona` int(11) NOT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   `estUsuari` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   `codUsuari` char(8) COLLATE utf8mb4_unicode_ci NOT NULL,
   `claUsuari` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `codRol`, `id_persona`, `usuCre`, `usuMod`, `fecCre`, `fecMod`, `estUsuari`, `codUsuari`, `claUsuari`) VALUES
+(1, 'SUP', 1, 'root@localhost', 'root@localhost', '2023-12-12 16:29:02', '2023-12-12 17:35:21', 'ACT', 'WNORIEGA', '123456');
+
+--
+-- Triggers `usuario`
+--
+DROP TRIGGER IF EXISTS `T01I_usuario`;
+DELIMITER $$
+CREATE TRIGGER `T01I_usuario` BEFORE INSERT ON `usuario` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_usuario`;
+DELIMITER $$
+CREATE TRIGGER `T02U_usuario` BEFORE UPDATE ON `usuario` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -167,6 +409,10 @@ CREATE TABLE IF NOT EXISTS `viaje` (
   `id_horario` int(11) DEFAULT NULL,
   `id_conductor` int(11) DEFAULT NULL,
   `preViaje` decimal(10,2) DEFAULT NULL,
+  `usuCre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuMod` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fecCre` datetime NOT NULL,
+  `fecMod` datetime NOT NULL,
   `estViaje` char(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id_viaje`),
   KEY `BusCode` (`id_bus`),
@@ -174,6 +420,28 @@ CREATE TABLE IF NOT EXISTS `viaje` (
   KEY `ScheduleCode` (`id_horario`),
   KEY `DriverCode` (`id_conductor`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Triggers `viaje`
+--
+DROP TRIGGER IF EXISTS `T01I_viaje`;
+DELIMITER $$
+CREATE TRIGGER `T01I_viaje` BEFORE INSERT ON `viaje` FOR EACH ROW BEGIN
+set new.usuCre = USER();
+set new.fecCre = NOW();
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `T02U_viaje`;
+DELIMITER $$
+CREATE TRIGGER `T02U_viaje` BEFORE UPDATE ON `viaje` FOR EACH ROW BEGIN
+set new.usuMod = USER();
+set new.fecMod = NOW();
+END
+$$
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
