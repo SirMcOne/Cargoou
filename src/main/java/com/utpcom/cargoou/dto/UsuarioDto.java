@@ -9,62 +9,231 @@ package com.utpcom.cargoou.dto;
  * @author user
  */
 public class UsuarioDto {
-    private Integer id_usuario;
-    private String codRol;
-    private Integer id_persona;
-    private String estUsuari;
-    private String codUsuari;
-    private String claUsuari;
+    private int IdUsuario;
+    private String codUsuario;
+    private String Usuario;
+    private String Password;
+    private String Nombres;
+    private String Apellidos;
+    private String Email;
+    private String Permisos;
+    private int Estados;
+    private int Enlinea;
+    private int NumIngresos;
+    private String FecCrea;
+    private String FecModifica;
+    private String FecElimina;
+    private String FecUltimoAcc;
+    private String Crea;
+    private String Modifica;
+    private String Elimina;
+    private String HoraCrea;
+    private String HoraModifica;
+    private String HoraElimina;
+    private String HoraUltimoAcc;
 
     public UsuarioDto() {
     }
-
-    public Integer getId_usuario() {
-        return id_usuario;
+    
+    public UsuarioDto(int IdUsuario, String codUsuario, String Usuario, String Password, String Nombres, String Apellidos, String Email, String Permisos, int Estados, int Enlinea, int NumIngresos, String FecCrea, String FecModifica, String FecElimina, String FecUltimoAcc, String Crea, String Modifica, String Elimina, String HoraCrea, String HoraModifica, String HoraElimina, String HoraUltimoAcc) {
+        this.IdUsuario = IdUsuario;
+        this.codUsuario = codUsuario;
+        this.Usuario = Usuario;
+        this.Password = Password;
+        this.Nombres = Nombres;
+        this.Apellidos = Apellidos;
+        this.Email = Email;
+        this.Permisos = Permisos;
+        this.Estados = Estados;
+        this.Enlinea = Enlinea;
+        this.NumIngresos = NumIngresos;
+        this.FecCrea = FecCrea;
+        this.FecModifica = FecModifica;
+        this.FecElimina = FecElimina;
+        this.FecUltimoAcc = FecUltimoAcc;
+        this.Crea = Crea;
+        this.Modifica = Modifica;
+        this.Elimina = Elimina;
+        this.HoraCrea = HoraCrea;
+        this.HoraModifica = HoraModifica;
+        this.HoraElimina = HoraElimina;
+        this.HoraUltimoAcc = HoraUltimoAcc;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public int getIdUsuario() {
+        return IdUsuario;
     }
 
-    public String getCodRol() {
-        return codRol;
+    public void setIdUsuario(int IdUsuario) {
+        this.IdUsuario = IdUsuario;
     }
 
-    public void setCodRol(String codRol) {
-        this.codRol = codRol;
+    public String getCodUsuario() {
+        return codUsuario;
     }
 
-    public Integer getId_persona() {
-        return id_persona;
+    public void setCodUsuario(String codUsuario) {
+        this.codUsuario = codUsuario;
     }
 
-    public void setId_persona(Integer id_persona) {
-        this.id_persona = id_persona;
+    public String getUsuario() {
+        return Usuario;
     }
 
-    public String getEstUsuari() {
-        return estUsuari;
+    public void setUsuario(String Usuario) {
+        this.Usuario = Usuario;
     }
 
-    public void setEstUsuari(String estUsuari) {
-        this.estUsuari = estUsuari;
+    public String getPassword() {
+        return Password;
     }
 
-    public String getCodUsuari() {
-        return codUsuari;
+    public void setPassword(String Password) {
+        this.Password = Password;
     }
 
-    public void setCodUsuari(String codUsuari) {
-        this.codUsuari = codUsuari;
+    public String getNombres() {
+        return Nombres;
     }
 
-    public String getClaUsuari() {
-        return claUsuari;
+    public void setNombres(String Nombres) {
+        this.Nombres = Nombres;
     }
 
-    public void setClaUsuari(String claUsuari) {
-        this.claUsuari = claUsuari;
+    public String getApellidos() {
+        return Apellidos;
+    }
+
+    public void setApellidos(String Apellidos) {
+        this.Apellidos = Apellidos;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public String getPermisos() {
+        return Permisos;
+    }
+
+    public void setPermisos(String Permisos) {
+        this.Permisos = Permisos;
+    }
+
+    public int getEstados() {
+        return Estados;
+    }
+
+    public void setEstados(int Estados) {
+        this.Estados = Estados;
+    }
+
+    public int getEnlinea() {
+        return Enlinea;
+    }
+
+    public void setEnlinea(int Enlinea) {
+        this.Enlinea = Enlinea;
+    }
+
+    public int getNumIngresos() {
+        return NumIngresos;
+    }
+
+    public void setNumIngresos(int NumIngresos) {
+        this.NumIngresos = NumIngresos;
+    }
+
+    public String getFecCrea() {
+        return FecCrea;
+    }
+
+    public void setFecCrea(String FecCrea) {
+        this.FecCrea = FecCrea;
+    }
+
+    public String getFecModifica() {
+        return FecModifica;
+    }
+
+    public void setFecModifica(String FecModifica) {
+        this.FecModifica = FecModifica;
+    }
+
+    public String getFecElimina() {
+        return FecElimina;
+    }
+
+    public void setFecElimina(String FecElimina) {
+        this.FecElimina = FecElimina;
+    }
+
+    public String getFecUltimoAcc() {
+        return FecUltimoAcc;
+    }
+
+    public void setFecUltimoAcc(String FecUltimoAcc) {
+        this.FecUltimoAcc = FecUltimoAcc;
+    }
+
+    public String getCrea() {
+        return Crea;
+    }
+
+    public void setCrea(String Crea) {
+        this.Crea = Crea;
+    }
+
+    public String getModifica() {
+        return Modifica;
+    }
+
+    public void setModifica(String Modifica) {
+        this.Modifica = Modifica;
+    }
+
+    public String getElimina() {
+        return Elimina;
+    }
+
+    public void setElimina(String Elimina) {
+        this.Elimina = Elimina;
+    }
+
+    public String getHoraCrea() {
+        return HoraCrea;
+    }
+
+    public void setHoraCrea(String HoraCrea) {
+        this.HoraCrea = HoraCrea;
+    }
+
+    public String getHoraModifica() {
+        return HoraModifica;
+    }
+
+    public void setHoraModifica(String HoraModifica) {
+        this.HoraModifica = HoraModifica;
+    }
+
+    public String getHoraElimina() {
+        return HoraElimina;
+    }
+
+    public void setHoraElimina(String HoraElimina) {
+        this.HoraElimina = HoraElimina;
+    }
+
+    public String getHoraUltimoAcc() {
+        return HoraUltimoAcc;
+    }
+
+    public void setHoraUltimoAcc(String HoraUltimoAcc) {
+        this.HoraUltimoAcc = HoraUltimoAcc;
     }
     
 }

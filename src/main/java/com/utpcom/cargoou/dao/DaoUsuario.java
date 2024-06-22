@@ -4,7 +4,7 @@
  */
 package com.utpcom.cargoou.dao;
 
-import com.utpcom.cargoou.dto.UsuarioDto;
+import com.utpcom.cargoou.entidades.Usuario;
 import java.util.List;
 
 /**
@@ -12,11 +12,11 @@ import java.util.List;
  * @author user
  */
 public interface DaoUsuario {
-    List<UsuarioDto> usuarioSel();
-    UsuarioDto usuarioGet(Integer id);
-    UsuarioDto usuarioLog(String cod, String cla);
-    String usuarioIns(UsuarioDto usuario);
-    String usuarioUpd(UsuarioDto usuario);
-    String usuarioDel(List<Integer> ids);
+    List<Usuario> usuarioSel();
+    Usuario usuarioGet(Integer id);
+    Usuario usuarioLog(String cod, String cla);
+    String usuarioIns(Usuario usuario);
+    String usuarioUpd(Usuario usuario);
+    String usuarioDel(Integer id);
     String getMensaje();
 }

@@ -23,7 +23,7 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion = request.getParameter("accion");
-        accion = (accion == null) ? "LOG" : accion;
+        accion = (accion == null) ? "SEL" : accion;
         String result;
         String target = "usuario.jsp";
         UsuarioValidator validator = new UsuarioValidator(request);
@@ -31,22 +31,22 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             case "SEL":
                 result = validator.usuarioSel();
                 break;
-            case "INS":
+            /*case "INS":
                 result = validator.usuarioInsUpd(false);
                 target = result == null ? "usuario.jsp" : "usuarioReg.jsp";
                 break;
             case "DEL":
                 result = validator.usuarioDel();
                 target = "usuario.jsp";
-                break;
+                break;*/
             case "GET":
                 result = validator.usuarioGet();
                 target = "usuarioRegOk.jsp";
                 break;
-            case "UPD":
+            /*case "UPD":
                 result = validator.usuarioInsUpd(true);
                 target = result == null ? "usuario.jsp" : "usuarioRegOk.jsp";
-                break;
+                break;*/
             case "LOG":
                 result = validator.usuarioLog();
                 target = result == null ? "login.jsp" : "inicio.jsp";
