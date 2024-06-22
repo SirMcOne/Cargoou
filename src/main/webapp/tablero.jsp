@@ -107,6 +107,12 @@
                   <p>Viaje</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="usuario" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuario</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

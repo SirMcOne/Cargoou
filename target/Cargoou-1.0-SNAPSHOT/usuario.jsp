@@ -68,7 +68,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="bus" class="nav-link active">
+                                    <a href="bus" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Bus</p>
                                     </a>
@@ -98,7 +98,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="usuario" class="nav-link">
+                                    <a href="usuario" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Usuario</p>
                                     </a>
@@ -136,12 +136,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Bus</h1>
+                        <h1 class="m-0">Usuario</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="inicio.jsp">Inicio</a></li>
-                            <li class="breadcrumb-item active">Bus</li>
+                            <li class="breadcrumb-item active">Usuario</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -159,15 +159,15 @@
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
-                                    Buses
+                                    Usuarios
                                 </h3>
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="busReg.jsp">Nuevo</a>
+                                            <a class="nav-link active" href="usuarioReg.jsp">Nuevo</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="bus" data-toggle="tab">Actualizar</a>
+                                            <a class="nav-link" href="usuario" data-toggle="tab">Actualizar</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -181,21 +181,28 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Placa</th>
-                                            <th>Color</th>
+                                            <th>Id</th>
+                                            <th>Codigo</th>
+                                            <th>Usuario</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Email</th>
                                             <th>Estado</th>
-                                            <th>ASientos</th>
+                                            <th>EnLinea</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach var="f" items="${list}">                
                                         <tr>
-                                            <td>${f.id_bus}</td>
-                                            <td>${f.placa}</td>
-                                            <td><span class="badge bg-success">${f.estBus}</span></td>
-                                            <td>${f.color}</td>
-                                            <td>${f.numAsi}</td>
+                                            <td>${f.IdUsuario}</td>
+                                            <td>${f.CodUsuario}</td>
+                                            <td>${f.Usuario}</td>
+                                            <td>${f.Nombres}</td>
+                                            <td>${f.Apellidos}</td>
+                                            <td>${f.Email}</td>
+                                            <td><span class="badge bg-success">${f.Estado}</span></td>
+                                            <td>${f.Enlinea}</td>
                                             <td class="text-right">
                                                 <a class="btn btn-primary btn-sm" href="#">
                                                     <i class="fas fa-folder">
@@ -220,11 +227,14 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Placa</th>
-                                            <th>Color</th>
+                                            <th>Id</th>
+                                            <th>Codigo</th>
+                                            <th>Usuario</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Email</th>
                                             <th>Estado</th>
-                                            <th>ASientos</th>
-
+                                            <th>EnLinea</th>
                                             <th>Opciones</th>
                                         </tr>
                                     </tfoot>
