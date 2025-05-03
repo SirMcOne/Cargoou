@@ -24,27 +24,31 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion = request.getParameter("accion");
-        accion = (accion == null) ? "SEL" : accion;
+        accion = (accion == null) ? "sel" : accion;
         String result;
         String target = "bus.jsp";
         BusValidator validator = new BusValidator(request);
         switch (accion) {
-            case "SEL":
+            case "sel":
                 result = validator.busSel();
                 break;
-            case "INS":
+            case "ins":
                 result = validator.busInsUpd(false);
                 target = result == null ? "bus.jsp" : "busReg.jsp";
                 break;
-            case "DEL":
+            case "del":
                 result = validator.busDel();
                 target = "bus.jsp";
                 break;
-            case "GET":
+            case "get":
                 result = validator.busGet();
                 target = "busRegOk.jsp";
                 break;
-            case "UPD":
+            case "reg":
+                result = "";
+                target = "busReg.jsp";
+                break;
+            case "upd":
                 result = validator.busInsUpd(true);
                 target = result == null ? "bus.jsp" : "busRegOk.jsp";
                 break;

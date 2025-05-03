@@ -5,13 +5,14 @@
 package com.utpcom.cargoou.dao.impl;
 
 import com.utpcom.cargoou.dao.DaoUsuario;
-//import com.utpcom.cargoou.dto.UsuarioDto;
-import com.utpcom.cargoou.entidades.Usuario;
+import com.utpcom.cargoou.dto.UsuarioDto;
 import com.utpcom.cargoou.util.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class DaoUsuarioImpl implements DaoUsuario {
     }
 
     @Override
-    public List<Usuario> usuarioSel() {
-        List<Usuario> lista = null;
+    public List<UsuarioDto> usuarioSel() {
+        List<UsuarioDto> lista = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("IdUsuario, ")
@@ -45,24 +46,16 @@ public class DaoUsuarioImpl implements DaoUsuario {
                 .append("Enlinea, ")
                 .append("NumIngresos, ")
                 .append("FecCrea, ")
-                .append("FecModifica, ")
-                .append("FecElimina, ")
-                .append("FecUltimoAcc, ")
                 .append("Crea, ")
-                .append("Modifica, ")
-                .append("Elimina, ")
-                .append("HoraCrea, ")
-                .append("HoraModifica, ")
-                .append("HoraElimina, ")
-                .append("HoraUltimoAcc ")
-                .append(" FROM usuario");
+                .append("HoraCrea")
+                .append(" FROM usuario WHERE CodUsuario NOT LIKE 'ADM00000'");
         System.out.print(sql);
         try (Connection cn = conexion.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ResultSet rs = ps.executeQuery();
             lista = new ArrayList<>();
             while (rs.next()) {
-                Usuario usuario = new Usuario();
+                UsuarioDto usuario = new UsuarioDto();
                 usuario.setIdUsuario(rs.getInt(1));
                 usuario.setCodUsuario(rs.getString(2));
                 usuario.setUsuario(rs.getString(3));
@@ -74,17 +67,9 @@ public class DaoUsuarioImpl implements DaoUsuario {
                 usuario.setEstado(rs.getInt(9));
                 usuario.setEnlinea(rs.getInt(10));
                 usuario.setNumIngresos(rs.getInt(11));
-                usuario.setFecCrea(rs.getString(12));
-                usuario.setFecModifica(rs.getString(13));
-                usuario.setFecElimina(rs.getString(14));
-                usuario.setFecUltimoAcc(rs.getString(15));
-                usuario.setCrea(rs.getString(16));
-                usuario.setModifica(rs.getString(17));
-                usuario.setElimina(rs.getString(18));
-                usuario.setHoraCrea(rs.getString(19));
-                usuario.setHoraModifica(rs.getString(20));
-                usuario.setHoraElimina(rs.getString(21));
-                usuario.setHoraUltimoAcc(rs.getString(22));
+                usuario.setFecCrea(LocalDate.parse(rs.getString(12)));
+                usuario.setCrea(rs.getString(13));
+                usuario.setHoraCrea(LocalTime.parse(rs.getString(14)));
                 lista.add(usuario);
             }
         } catch (SQLException e) {
@@ -94,8 +79,8 @@ public class DaoUsuarioImpl implements DaoUsuario {
     }
 
     @Override
-    public Usuario usuarioGet(Integer id) {
-        Usuario usuario = null;
+    public UsuarioDto usuarioGet(Integer id) {
+        UsuarioDto usuario = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("IdUsuario, ")
@@ -110,23 +95,15 @@ public class DaoUsuarioImpl implements DaoUsuario {
                 .append("Enlinea, ")
                 .append("NumIngresos, ")
                 .append("FecCrea, ")
-                .append("FecModifica, ")
-                .append("FecElimina, ")
-                .append("FecUltimoAcc, ")
                 .append("Crea, ")
-                .append("Modifica, ")
-                .append("Elimina, ")
-                .append("HoraCrea, ")
-                .append("HoraModifica, ")
-                .append("HoraElimina, ")
-                .append("HoraUltimoAcc ")
-                .append(" WHERE idUsuario = ?");
+                .append("HoraCrea")
+                .append(" WHERE IdUsuario = ?");
         try (Connection cn = conexion.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                usuario = new Usuario();
+                usuario = new UsuarioDto();
                 usuario.setIdUsuario(rs.getInt(1));
                 usuario.setCodUsuario(rs.getString(2));
                 usuario.setUsuario(rs.getString(3));
@@ -138,17 +115,9 @@ public class DaoUsuarioImpl implements DaoUsuario {
                 usuario.setEstado(rs.getInt(9));
                 usuario.setEnlinea(rs.getInt(10));
                 usuario.setNumIngresos(rs.getInt(11));
-                usuario.setFecCrea(rs.getString(12));
-                usuario.setFecModifica(rs.getString(13));
-                usuario.setFecElimina(rs.getString(14));
-                usuario.setFecUltimoAcc(rs.getString(15));
-                usuario.setCrea(rs.getString(16));
-                usuario.setModifica(rs.getString(17));
-                usuario.setElimina(rs.getString(18));
-                usuario.setHoraCrea(rs.getString(19));
-                usuario.setHoraModifica(rs.getString(20));
-                usuario.setHoraElimina(rs.getString(21));
-                usuario.setHoraUltimoAcc(rs.getString(22));
+                usuario.setFecCrea(LocalDate.parse(rs.getString(12)));
+                usuario.setCrea(rs.getString(13));
+                usuario.setHoraCrea(LocalTime.parse(rs.getString(14)));
             }
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -157,8 +126,8 @@ public class DaoUsuarioImpl implements DaoUsuario {
     }
 
     @Override
-    public Usuario usuarioLog(String cod, String cla) {
-        Usuario usuario = null;
+    public UsuarioDto usuarioLog(String cod, String cla) {
+        UsuarioDto usuario = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("IdUsuario, ")
@@ -175,7 +144,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
             ps.setString(2, cla);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                usuario = new Usuario();
+                usuario = new UsuarioDto();
                 usuario.setIdUsuario(rs.getInt(1));
                 usuario.setUsuario(rs.getString(2));
                 usuario.setPassword(rs.getString(3));
@@ -190,7 +159,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
     }
 
     @Override
-    public String usuarioIns(Usuario usuario) {
+    public String usuarioIns(UsuarioDto usuario) {
         mensaje = null;
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO usuario(")
@@ -230,17 +199,17 @@ public class DaoUsuarioImpl implements DaoUsuario {
             ps.setInt(9, usuario.getEstado());
             ps.setInt(10, usuario.getEnlinea());
             ps.setInt(11, usuario.getNumIngresos());
-            ps.setString(12, usuario.getFecCrea());
-            ps.setString(13, usuario.getFecModifica());
-            ps.setString(14, usuario.getFecElimina());
-            ps.setString(15, usuario.getFecUltimoAcc());
+            ps.setString(12, usuario.getFecCrea().toString());
+            ps.setString(13, usuario.getFecModifica().toString());
+            ps.setString(14, usuario.getFecElimina().toString());
+            ps.setString(15, usuario.getFecUltimoAcc().toString());
             ps.setString(16, usuario.getCrea());
             ps.setString(17, usuario.getModifica());
             ps.setString(18, usuario.getElimina());
-            ps.setString(19, usuario.getHoraCrea());
-            ps.setString(20, usuario.getHoraModifica());
-            ps.setString(21, usuario.getHoraElimina());
-            ps.setString(22, usuario.getHoraUltimoAcc());
+            ps.setString(19, usuario.getHoraCrea().toString());
+            ps.setString(20, usuario.getHoraModifica().toString());
+            ps.setString(21, usuario.getHoraElimina().toString());
+            ps.setString(22, usuario.getHoraUltimoAcc().toString());
             int ctos = ps.executeUpdate();
             ps.close();
             mensaje = (ctos == 0)
@@ -253,7 +222,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
     }
 
     @Override
-    public String usuarioUpd(Usuario usuario) {
+    public String usuarioUpd(UsuarioDto usuario) {
         mensaje = null;
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE usuario SET ")
@@ -281,17 +250,29 @@ public class DaoUsuarioImpl implements DaoUsuario {
     }
 
     @Override
-    public String usuarioDel(Integer id) {
+    public String usuarioDel(List<Integer> ids) {
         StringBuilder sql = new StringBuilder();
         sql.append("DELETE FROM usuario")
                 .append(" WHERE IdUsuario = ?");
         try (Connection cn = conexion.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
-            ps.setInt(1, id);
-            int ctos = ps.executeUpdate();
-            mensaje = (ctos == 0)
-                    ? "Cero filas eliminadas"
-                    : null;
+            cn.setAutoCommit(false);
+            boolean ok = true;
+            for(int id = 0; id<ids.size(); id++){
+                ps.setInt(1, ids.get(id));
+                int ctos = ps.executeUpdate();
+                if(ctos ==0){
+                    ok = false;
+                    mensaje = "ID: "+ ids.get(id)+ " no existe";
+                }
+            }
+            if(ok){
+                cn.commit();
+            }else{
+                cn.rollback();
+            }
+            cn.setAutoCommit(true);
+
         } catch (SQLException e) {
             mensaje = e.getMessage();
         }
