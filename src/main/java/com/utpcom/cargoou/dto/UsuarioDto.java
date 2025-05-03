@@ -3,77 +3,54 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.utpcom.cargoou.dto;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
  * @author user
  */
 public class UsuarioDto {
-    private int IdUsuario;
-    private String codUsuario;
+    private Integer IdUsuario;
+    private String CodUsuario;
     private String Usuario;
     private String Password;
     private String Nombres;
     private String Apellidos;
     private String Email;
     private String Permisos;
-    private int Estados;
-    private int Enlinea;
-    private int NumIngresos;
-    private String FecCrea;
-    private String FecModifica;
-    private String FecElimina;
-    private String FecUltimoAcc;
+    private Integer Estado;
+    private Integer Enlinea;
+    private Integer NumIngresos;
+    private LocalDate FecCrea;
+    private LocalDate FecModifica;
+    private LocalDate FecElimina;
+    private LocalDate FecUltimoAcc;
     private String Crea;
     private String Modifica;
     private String Elimina;
-    private String HoraCrea;
-    private String HoraModifica;
-    private String HoraElimina;
-    private String HoraUltimoAcc;
+    private LocalTime HoraCrea;
+    private LocalTime HoraModifica;
+    private LocalTime HoraElimina;
+    private LocalTime HoraUltimoAcc;
 
     public UsuarioDto() {
     }
-    
-    public UsuarioDto(int IdUsuario, String codUsuario, String Usuario, String Password, String Nombres, String Apellidos, String Email, String Permisos, int Estados, int Enlinea, int NumIngresos, String FecCrea, String FecModifica, String FecElimina, String FecUltimoAcc, String Crea, String Modifica, String Elimina, String HoraCrea, String HoraModifica, String HoraElimina, String HoraUltimoAcc) {
-        this.IdUsuario = IdUsuario;
-        this.codUsuario = codUsuario;
-        this.Usuario = Usuario;
-        this.Password = Password;
-        this.Nombres = Nombres;
-        this.Apellidos = Apellidos;
-        this.Email = Email;
-        this.Permisos = Permisos;
-        this.Estados = Estados;
-        this.Enlinea = Enlinea;
-        this.NumIngresos = NumIngresos;
-        this.FecCrea = FecCrea;
-        this.FecModifica = FecModifica;
-        this.FecElimina = FecElimina;
-        this.FecUltimoAcc = FecUltimoAcc;
-        this.Crea = Crea;
-        this.Modifica = Modifica;
-        this.Elimina = Elimina;
-        this.HoraCrea = HoraCrea;
-        this.HoraModifica = HoraModifica;
-        this.HoraElimina = HoraElimina;
-        this.HoraUltimoAcc = HoraUltimoAcc;
-    }
 
-    public int getIdUsuario() {
+    public Integer getIdUsuario() {
         return IdUsuario;
     }
 
-    public void setIdUsuario(int IdUsuario) {
+    public void setIdUsuario(Integer IdUsuario) {
         this.IdUsuario = IdUsuario;
     }
 
     public String getCodUsuario() {
-        return codUsuario;
+        return CodUsuario;
     }
 
-    public void setCodUsuario(String codUsuario) {
-        this.codUsuario = codUsuario;
+    public void setCodUsuario(String CodUsuario) {
+        this.CodUsuario = CodUsuario;
     }
 
     public String getUsuario() {
@@ -124,59 +101,59 @@ public class UsuarioDto {
         this.Permisos = Permisos;
     }
 
-    public int getEstados() {
-        return Estados;
+    public Integer getEstado() {
+        return Estado;
     }
 
-    public void setEstados(int Estados) {
-        this.Estados = Estados;
+    public void setEstado(Integer Estado) {
+        this.Estado = Estado;
     }
 
-    public int getEnlinea() {
+    public Integer getEnlinea() {
         return Enlinea;
     }
 
-    public void setEnlinea(int Enlinea) {
+    public void setEnlinea(Integer Enlinea) {
         this.Enlinea = Enlinea;
     }
 
-    public int getNumIngresos() {
+    public Integer getNumIngresos() {
         return NumIngresos;
     }
 
-    public void setNumIngresos(int NumIngresos) {
+    public void setNumIngresos(Integer NumIngresos) {
         this.NumIngresos = NumIngresos;
     }
 
-    public String getFecCrea() {
+    public LocalDate getFecCrea() {
         return FecCrea;
     }
 
-    public void setFecCrea(String FecCrea) {
+    public void setFecCrea(LocalDate FecCrea) {
         this.FecCrea = FecCrea;
     }
 
-    public String getFecModifica() {
+    public LocalDate getFecModifica() {
         return FecModifica;
     }
 
-    public void setFecModifica(String FecModifica) {
+    public void setFecModifica(LocalDate FecModifica) {
         this.FecModifica = FecModifica;
     }
 
-    public String getFecElimina() {
+    public LocalDate getFecElimina() {
         return FecElimina;
     }
 
-    public void setFecElimina(String FecElimina) {
+    public void setFecElimina(LocalDate FecElimina) {
         this.FecElimina = FecElimina;
     }
 
-    public String getFecUltimoAcc() {
+    public LocalDate getFecUltimoAcc() {
         return FecUltimoAcc;
     }
 
-    public void setFecUltimoAcc(String FecUltimoAcc) {
+    public void setFecUltimoAcc(LocalDate FecUltimoAcc) {
         this.FecUltimoAcc = FecUltimoAcc;
     }
 
@@ -204,36 +181,36 @@ public class UsuarioDto {
         this.Elimina = Elimina;
     }
 
-    public String getHoraCrea() {
+    public LocalTime getHoraCrea() {
         return HoraCrea;
     }
 
-    public void setHoraCrea(String HoraCrea) {
+    public void setHoraCrea(LocalTime HoraCrea) {
         this.HoraCrea = HoraCrea;
     }
 
-    public String getHoraModifica() {
+    public LocalTime getHoraModifica() {
         return HoraModifica;
     }
 
-    public void setHoraModifica(String HoraModifica) {
+    public void setHoraModifica(LocalTime HoraModifica) {
         this.HoraModifica = HoraModifica;
     }
 
-    public String getHoraElimina() {
+    public LocalTime getHoraElimina() {
         return HoraElimina;
     }
 
-    public void setHoraElimina(String HoraElimina) {
+    public void setHoraElimina(LocalTime HoraElimina) {
         this.HoraElimina = HoraElimina;
     }
 
-    public String getHoraUltimoAcc() {
+    public LocalTime getHoraUltimoAcc() {
         return HoraUltimoAcc;
     }
 
-    public void setHoraUltimoAcc(String HoraUltimoAcc) {
+    public void setHoraUltimoAcc(LocalTime HoraUltimoAcc) {
         this.HoraUltimoAcc = HoraUltimoAcc;
     }
-    
+
 }

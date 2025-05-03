@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package com.utpcom.cargoou.web.servlet;
+
 import com.utpcom.cargoou.web.validator.UsuarioValidator;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
@@ -23,31 +24,31 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion = request.getParameter("accion");
-        accion = (accion == null) ? "SEL" : accion;
+        accion = (accion == null) ? "sel" : accion;
         String result;
         String target = "usuario.jsp";
         UsuarioValidator validator = new UsuarioValidator(request);
         switch (accion) {
-            case "SEL":
+            case "sel":
                 result = validator.usuarioSel();
                 break;
-            /*case "INS":
+            case "ins":
                 result = validator.usuarioInsUpd(false);
                 target = result == null ? "usuario.jsp" : "usuarioReg.jsp";
                 break;
-            case "DEL":
+            case "del":
                 result = validator.usuarioDel();
                 target = "usuario.jsp";
-                break;*/
-            case "GET":
+                break;
+            case "get":
                 result = validator.usuarioGet();
                 target = "usuarioRegOk.jsp";
                 break;
-            /*case "UPD":
+            case "upd":
                 result = validator.usuarioInsUpd(true);
                 target = result == null ? "usuario.jsp" : "usuarioRegOk.jsp";
-                break;*/
-            case "LOG":
+                break;
+            case "log":
                 result = validator.usuarioLog();
                 target = result == null ? "login.jsp" : "inicio.jsp";
                 break;

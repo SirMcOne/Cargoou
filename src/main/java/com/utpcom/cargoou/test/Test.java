@@ -4,12 +4,15 @@
  */
 package com.utpcom.cargoou.test;
 
-import com.utpcom.cargoou.dao.DaoBus;
-import com.utpcom.cargoou.dao.impl.DaoBusImpl;
-import com.utpcom.cargoou.dto.BusDto;
-import com.utpcom.cargoou.util.Conexion;
-import java.sql.Connection;
+import com.utpcom.cargoou.dao.DaoUsuario;
+import com.utpcom.cargoou.dao.impl.DaoUsuarioImpl;
+import com.utpcom.cargoou.dto.UsuarioDto;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -22,25 +25,49 @@ public class Test {
      */
     public static void main(String[] args) {
         // Test de conexión
-        DaoBus daoBus = new DaoBusImpl();
-        List<BusDto> list = daoBus.busSel();
-        if (list != null) {
-            try {
-                list.forEach((t) -> {
-                    System.out.println(t.getId_bus().toString() + " "
-                            + t.getPlaca()+ " "
-                            + t.getColor() + " "
-                            + t.getEstBus() + " "
-                            + t.getNumAsi().toString());
-                            //+ t.getFecha_ingreso().toString());
-                });
-            } catch (Exception e) {
-                System.out.println(daoBus.getMensaje());
-                System.out.println(e.getMessage());
+        Scanner scanner;
+        DaoUsuario daoUsuario = new DaoUsuarioImpl();
+        UsuarioDto usuario;
+        Integer opt;
+        do {
+            scanner = new Scanner(System.in);
+            inicio();
+            opt = scanner.nextInt();
+            switch (opt) {
+                case 1:
+                    List<UsuarioDto> list = daoUsuario.usuarioSel();
+                    if (list != null) {
+                        try {
+                            list.forEach((t) -> {
+                                System.out.println(t.getIdUsuario().toString() + " "
+                                        + t.getCodUsuario() + " "
+                                        + t.getUsuario() + " "
+                                        + t.getEstado() + " "
+                                        + t.getFecCrea().toString());
+                                //+ t.getFecha_ingreso().toString());
+                            });
+                        } catch (Exception e) {
+                            System.out.println(daoUsuario.getMensaje());
+                            System.out.println(e.getMessage());
+                        }
+                    } else {
+                        System.out.println("Lista vacía");
+                    }
+                    break;
             }
-        } else {
-            System.out.println("Lista vacía");
-        }
+        }while(opt!=6);       
+    }
+
+    private static void inicio() {
+        System.out.println("--------Claves de las prueba-----");
+        System.out.println("1: Lista de usuarios UsuariosSel");
+        System.out.println("2: Obtener usuario UsuariosGet");
+        System.out.println("3: Insertar usuario UsuariosUpd");
+        System.out.println("4: Actualizar usuario UsuariosIns");
+        System.out.println("5: Eliminar usuario UsuariosDel");
+        System.out.println("6: Salir");
+        System.out.println("-----------------------------------");
+        System.out.print("\nIngrese la clave: ");
     }
 
 }

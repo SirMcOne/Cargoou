@@ -31,7 +31,7 @@
       <p class="login-box-msg">Ingresa tus datos de acceso</p>
 
       <form action="usuario" method="post" autocomplete="off">
-          <input type="hidden" name="accion" value="LOG"/>
+          <input type="hidden" name="accion" value="log"/>
         <div class="input-group mb-3">
             <input type="text" class="form-control" name="codUsuari" placeholder="Código" required="required" autofocus="autofocus">
           <div class="input-group-append">

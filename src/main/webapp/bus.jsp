@@ -164,7 +164,7 @@
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="busReg.jsp">Nuevo</a>
+                                            <a class="nav-link active" href="?accion=reg">Nuevo</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="bus" data-toggle="tab">Actualizar</a>

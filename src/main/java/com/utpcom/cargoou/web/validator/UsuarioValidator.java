@@ -6,13 +6,11 @@ package com.utpcom.cargoou.web.validator;
 
 import com.utpcom.cargoou.dao.DaoUsuario;
 import com.utpcom.cargoou.dao.impl.DaoUsuarioImpl;
-import com.utpcom.cargoou.entidades.Usuario;
+import com.utpcom.cargoou.dto.UsuarioDto;
 import com.utpcom.cargoou.util.DeString;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
 import java.util.List;
-
 
 /**
  *
@@ -23,15 +21,15 @@ public class UsuarioValidator {
 
     private final HttpServletRequest request;
     private final DaoUsuario daoUsuario;
-    
+
     public UsuarioValidator(HttpServletRequest request) {
         this.request = request;
         this.daoUsuario = new DaoUsuarioImpl();
     }
-    
+
     public String usuarioSel() {
         String result = null;
-        List<Usuario> list = daoUsuario.usuarioSel();
+        List<UsuarioDto> list = daoUsuario.usuarioSel();
         if (list != null) {
             request.setAttribute("list", list);
         } else {
@@ -42,8 +40,8 @@ public class UsuarioValidator {
 
     public String usuarioGet() {
         String result = null;
-        Integer id_usuario = DeString.aInteger(request.getParameter("id_usuario"));
-        Usuario usuario = daoUsuario.usuarioGet(id_usuario);
+        Integer id = DeString.aInteger(request.getParameter("idusuario"));
+        UsuarioDto usuario = daoUsuario.usuarioGet(id);
         if (usuario != null) {
             request.setAttribute("usuario", usuario);
         } else {
@@ -51,13 +49,84 @@ public class UsuarioValidator {
         }
         return result;
     }
-   
+
+    public String usuarioInsUpd(boolean upd) {
+        StringBuilder result = new StringBuilder("<ul>");
+        Integer idusuario = DeString.aInteger(request.getParameter("idusuario"));
+        String codigo = request.getParameter("codigo");
+        String nick = request.getParameter("nick");
+        String password = request.getParameter("password");
+        String nombres = request.getParameter("nombres");
+        String apellidos = request.getParameter("apellidos");
+        String email = request.getParameter("email");
+        String permisos = request.getParameter("permiso");
+        String registro = request.getParameter("registro");
+        
+        if (upd && idusuario == null) {
+            result.append("<li>Id requerido</li>");
+        }
+        if (codigo == null) {
+            result.append("<li>Fecha requerida</li>");
+        }
+        if (nick == null) {
+            result.append("<li>Fecha requerida</li>");
+        }
+        if (password == null) {
+            result.append("<li>Fecha requerida</li>");
+        }
+        if (nombres == null || nombres.trim().length() == 0) {
+            result.append("<li>Nombre requerido</li>");
+        } else if (nombres.trim().length() < 3 || nombres.trim().length() > 50) {
+            result.append("<li>La dimensión del nombre debe estar entre")
+                    .append("3 a 50 caracteres</li>");
+        }
+        if (apellidos == null || apellidos.trim().length() == 0) {
+            result.append("<li>Apellido paterno requerido</li>");
+        } else if (apellidos.trim().length() < 3 || apellidos.trim().length() > 50) {
+            result.append("<li>La dimensión del apellido paterno debe estar entre")
+                    .append("3 a 50 caracteres</li>");
+        }
+
+        if (permisos == null) {
+            result.append("<li>Fecha requerida</li>");
+        }
+        UsuarioDto usuario = new UsuarioDto();
+        usuario.setIdUsuario(idusuario);
+        usuario.setCodUsuario(codigo);
+        usuario.setUsuario(nick);
+        usuario.setPassword(password);
+        usuario.setNombres(nombres);
+        usuario.setApellidos(apellidos);
+        usuario.setEmail(email);
+        usuario.setPermisos(permisos);
+        usuario.setCrea(registro);
+        if (result.length() == 4) {
+            String msg = upd
+                    ? daoUsuario.usuarioUpd(usuario)
+                    : daoUsuario.usuarioIns(usuario);
+            if (msg != null) {
+                result.append("<li>").append(msg).append("</li>");
+            }
+        }
+        if (result.length() > 4) {
+            request.setAttribute("usuario", usuario);
+        }
+        return result.length() == 4 ? null : result.append("</ul>").toString();
+    }
+
+    public String usuarioDel() {
+        List<Integer> ids = DeString.ids(request.getParameter("ids"));
+        String result = (ids != null)
+                ? daoUsuario.usuarioDel(ids)
+                : "IDs incorrectos";
+        return result;
+    }
 
     public String usuarioLog() {
         String result = null;
-        String codUsuari = request.getParameter("Usuario");
-        String claUsuari = request.getParameter("Password");
-        Usuario usuario = daoUsuario.usuarioLog(codUsuari,claUsuari);
+        String codUsuari = request.getParameter("nick");
+        String claUsuari = request.getParameter("password");
+        UsuarioDto usuario = daoUsuario.usuarioLog(codUsuari, claUsuari);
         if (usuario != null) {
             request.setAttribute("usuario", usuario);
         } else {
@@ -113,4 +182,5 @@ public class UsuarioValidator {
         }
         return result.length() == 4 ? null : result.append("</ul>").toString();*/
     }
+
 }

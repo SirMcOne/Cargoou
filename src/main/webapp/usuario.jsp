@@ -10,7 +10,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>CarGoou | Bus</title>
+        <title>CarGoou | Usuario</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -212,12 +212,12 @@
                                                 <a class="btn btn-info btn-sm" href="#">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
-                                                    <input type="radio" name="id_upd" value="${f.id_bus}"/>Editar
+                                                    <input type="radio" name="id_upd" value="${f.IdUsuario}"/>Editar
                                                 </a>
                                                 <a class="btn btn-danger btn-sm" href="#">
                                                     <i class="fas fa-trash">
                                                     </i>
-                                                    <input type="checkbox" name="id_del" value="${f.id_bus}"/>Borrar
+                                                    <input type="checkbox" name="id_del" value="${f.IdUsuario}"/>Borrar
                                                 </a>
                                             </td>
                                         </tr>
