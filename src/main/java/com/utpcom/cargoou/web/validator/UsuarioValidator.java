@@ -91,7 +91,7 @@ public class UsuarioValidator {
             result.append("<li>Fecha requerida</li>");
         }
         UsuarioDto usuario = new UsuarioDto();
-        usuario.setIdUsuario(idusuario);
+        usuario.setId_usuario(idusuario);
         usuario.setCodUsuario(codigo);
         usuario.setUsuario(nick);
         usuario.setPassword(password);

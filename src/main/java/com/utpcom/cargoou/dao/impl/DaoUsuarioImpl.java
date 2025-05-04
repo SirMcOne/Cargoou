@@ -34,7 +34,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
         List<UsuarioDto> lista = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
-                .append("IdUsuario, ")
+                .append("Id_usuario, ")
                 .append("CodUsuario, ")
                 .append("Usuario, ")
                 .append("Password, ")
@@ -56,7 +56,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
             lista = new ArrayList<>();
             while (rs.next()) {
                 UsuarioDto usuario = new UsuarioDto();
-                usuario.setIdUsuario(rs.getInt(1));
+                usuario.setId_usuario(rs.getInt(1));
                 usuario.setCodUsuario(rs.getString(2));
                 usuario.setUsuario(rs.getString(3));
                 usuario.setPassword(rs.getString(4));
@@ -83,7 +83,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
         UsuarioDto usuario = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
-                .append("IdUsuario, ")
+                .append("Id_usuario, ")
                 .append("CodUsuario, ")
                 .append("Usuario, ")
                 .append("Password, ")
@@ -97,14 +97,14 @@ public class DaoUsuarioImpl implements DaoUsuario {
                 .append("FecCrea, ")
                 .append("Crea, ")
                 .append("HoraCrea")
-                .append(" WHERE IdUsuario = ?");
+                .append(" WHERE Id_usuario = ?");
         try (Connection cn = conexion.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 usuario = new UsuarioDto();
-                usuario.setIdUsuario(rs.getInt(1));
+                usuario.setId_usuario(rs.getInt(1));
                 usuario.setCodUsuario(rs.getString(2));
                 usuario.setUsuario(rs.getString(3));
                 usuario.setPassword(rs.getString(4));
@@ -130,7 +130,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
         UsuarioDto usuario = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
-                .append("IdUsuario, ")
+                .append("id_usuario, ")
                 .append("Usuario, ")
                 .append("Password, ")
                 .append("Permisos, ")
@@ -145,7 +145,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 usuario = new UsuarioDto();
-                usuario.setIdUsuario(rs.getInt(1));
+                usuario.setId_usuario(rs.getInt(1));
                 usuario.setUsuario(rs.getString(2));
                 usuario.setPassword(rs.getString(3));
                 usuario.setPermisos(rs.getString(4));
@@ -163,7 +163,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
         mensaje = null;
         StringBuilder sql = new StringBuilder();
         sql.append("INSERT INTO usuario(")
-                .append("IdUsuario, ")
+                .append("id_usuario, ")
                 .append("CodUsuario, ")
                 .append("Usuario, ")
                 .append("Password, ")
@@ -188,7 +188,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
                 .append("VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         try (Connection cn = conexion.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
-            ps.setInt(1, usuario.getIdUsuario());
+            ps.setInt(1, usuario.getId_usuario());
             ps.setString(2, usuario.getCodUsuario());
             ps.setString(3, usuario.getUsuario());
             ps.setString(4, usuario.getPassword());
@@ -231,7 +231,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
                 .append("Nombres = ?,")
                 .append("Apellidos = ?,")
                 .append("Email = ?")
-                .append(" WHERE IdUsuario = ?");
+                .append(" WHERE id_usuario = ?");
         try (Connection cn = conexion.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, usuario.getUsuario());
@@ -253,7 +253,7 @@ public class DaoUsuarioImpl implements DaoUsuario {
     public String usuarioDel(List<Integer> ids) {
         StringBuilder sql = new StringBuilder();
         sql.append("DELETE FROM usuario")
-                .append(" WHERE IdUsuario = ?");
+                .append(" WHERE id_usuario = ?");
         try (Connection cn = conexion.getConexion()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             cn.setAutoCommit(false);

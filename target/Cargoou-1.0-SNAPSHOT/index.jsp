@@ -20,40 +20,75 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition lockscreen">
+<body class="hold-transition register-page">
 <!-- Automatic element centering -->
-<div class="lockscreen-wrapper">
-  <div class="lockscreen-logo">
-    <a href="#"><b>Car</b>Goou</a>
+<div class="register-box">
+  <div class="register-logo">
+    <a href="../../index2.html"><b>Car</b>Goou</a>
   </div>
-  <!-- User name -->
-  <div class="lockscreen-name">Bus A001</div>
 
-  <!-- START LOCK SCREEN ITEM -->
-  <div class="lockscreen-item">
-    <!-- lockscreen image -->
-    <input id="text" type="hidden" value="A001:05" /><br />
-    <div id="qrcode" style="width:100px; height:100px; margin:auto;"></div>
-    <br>
-    <!-- /.lockscreen-image -->
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Registrate ahora</p>
 
-    <!-- lockscreen credentials (contains the form) -->
+      <form action="usuario?accion=reg" method="post" autocomplete="off">
+          <input type="hidden" name="accion" value="reg">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="nombres" placeholder="Nombres" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="email" class="form-control" name="correoe" placeholder="Correo Electrónico" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="contrasena" placeholder="Contraseña" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" name="recontrasena" placeholder="Repite Contraseña" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+                <input type="checkbox" id="agreeTerms" name="terms" value="agree" required>
+              <label for="agreeTerms">
+               Acepto los <a href="#">términos</a>
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
 
-    <!-- /.lockscreen credentials -->
+
+      <a href="login.jsp" class="text-center">Ya tienes una cuenta?</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
 </div>
-  
-  <!-- /.lockscreen-item -->
-  <div class="help-block text-center">
-    Escanee el QR para pagar
-  </div>
-  <div class="text-center">
-    <a href="login.jsp">O inicie sesión</a>
-  </div>
-  <div class="lockscreen-footer text-center">
-    Copyright &copy; 2023 <b><a href="#" class="text-black">.</a></b><br>
-    Santa Catalina SA
-  </div>
-</div>
+<!-- /.register-box -->
 <!-- /.center -->
 
 <!-- jQuery -->

@@ -39,7 +39,7 @@ public class Test {
                     if (list != null) {
                         try {
                             list.forEach((t) -> {
-                                System.out.println(t.getIdUsuario().toString() + " "
+                                System.out.println(t.getId_usuario().toString() + " "
                                         + t.getCodUsuario() + " "
                                         + t.getUsuario() + " "
                                         + t.getEstado() + " "
