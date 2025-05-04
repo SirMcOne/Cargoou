@@ -11,7 +11,7 @@ import java.time.LocalTime;
  * @author user
  */
 public class UsuarioDto {
-    private Integer IdUsuario;
+    private Integer Id_usuario;
     private String CodUsuario;
     private String Usuario;
     private String Password;
@@ -37,12 +37,12 @@ public class UsuarioDto {
     public UsuarioDto() {
     }
 
-    public Integer getIdUsuario() {
-        return IdUsuario;
+    public Integer getId_usuario() {
+        return Id_usuario;
     }
 
-    public void setIdUsuario(Integer IdUsuario) {
-        this.IdUsuario = IdUsuario;
+    public void setId_usuario(Integer Id_usuario) {
+        this.Id_usuario = Id_usuario;
     }
 
     public String getCodUsuario() {
